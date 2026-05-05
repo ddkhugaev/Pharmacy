@@ -1,4 +1,12 @@
+using DotNetEnv;
+
+// Загрузка переменных окружения
+Env.Load();
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Добавление переменных окружения
+builder.Configuration.AddEnvironmentVariables();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

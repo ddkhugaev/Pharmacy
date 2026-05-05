@@ -14,4 +14,10 @@
     <ProjectReference Include="..\Pharmacy.Db\Pharmacy.Db.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update=".env">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
