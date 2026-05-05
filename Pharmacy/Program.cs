@@ -1,4 +1,5 @@
 using DotNetEnv;
+using Pharmacy.Db;
 
 // Загрузка переменных окружения
 Env.Load();
@@ -8,10 +9,27 @@ var builder = WebApplication.CreateBuilder(args);
 // Добавление переменных окружения
 builder.Configuration.AddEnvironmentVariables();
 
+// Считывание переменных окружения
+var dbHost = Environment.GetEnvironmentVariable("DB_HOST") ?? throw new Exception("Переменная окружения не найдена");
+var dbName = Environment.GetEnvironmentVariable("DB_NAME") ?? throw new Exception("Переменная окружения не найдена");
+var dbUser = Environment.GetEnvironmentVariable("DB_USER") ?? throw new Exception("Переменная окружения не найдена");
+var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD") ?? throw new Exception("Переменная окружения не найдена");
+
+// Формирование строки подключения
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new Exception("Шаблон строки подключения не найден");
+connectionString = connectionString.Replace("{DB_HOST}", dbHost);
+connectionString = connectionString.Replace("{DB_NAME}", dbName);
+connectionString = connectionString.Replace("{DB_USER}", dbUser);
+connectionString = connectionString.Replace("{DB_PASSWORD}", dbPassword);
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+// Инициализация бд
+var dbInitializer = new DatabaseInitializer(connectionString);
+dbInitializer.Initialize();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
