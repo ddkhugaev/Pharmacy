@@ -17,6 +17,7 @@ namespace Pharmacy.Db
             CreateDatabase();
             CreateTables();
             CreateTriggers();
+            SeedData();
         }
 
         // Создание бд
@@ -73,6 +74,148 @@ namespace Pharmacy.Db
             CreateTriggersFavoriteItems();
             CreateTriggersOrders();
             CreateTriggersOrderItems();
+        }
+
+        // Заполнение данными, если все таблицы пусты
+        private void SeedData()
+        {
+            using var connection = new MySqlConnection(_connectionString);
+            connection.Open();
+
+            // Проверяем, что все таблицы пусты
+            string checkQuery = @"SELECT 
+                                    (SELECT COUNT(*) FROM categories) +
+                                    (SELECT COUNT(*) FROM brands) +
+                                    (SELECT COUNT(*) FROM countries) +
+                                    (SELECT COUNT(*) FROM active_ingredients) +
+                                    (SELECT COUNT(*) FROM users) +
+                                    (SELECT COUNT(*) FROM manufacturers) +
+                                    (SELECT COUNT(*) FROM medicines) +
+                                    (SELECT COUNT(*) FROM medicine_batches) +
+                                    (SELECT COUNT(*) FROM active_ingredient_medicines) +
+                                    (SELECT COUNT(*) FROM reviews) +
+                                    (SELECT COUNT(*) FROM cart_items) +
+                                    (SELECT COUNT(*) FROM favorite_items) +
+                                    (SELECT COUNT(*) FROM orders) +
+                                    (SELECT COUNT(*) FROM order_items) AS total;";
+            using var checkCommand = new MySqlCommand(checkQuery, connection);
+            var total = Convert.ToInt64(checkCommand.ExecuteScalar());
+            if (total > 0) return;
+
+            string sqlQuery = @"-- Категории
+                                INSERT INTO categories (name) VALUES
+                                ('Антибиотики'),
+                                ('Обезболивающие'),
+                                ('Витамины и БАДы'),
+                                ('Сердечно-сосудистые'),
+                                ('Противовирусные');
+
+                                -- Бренды
+                                INSERT INTO brands (name) VALUES
+                                ('Bayer'),
+                                ('Pfizer'),
+                                ('Novartis'),
+                                ('КРКА'),
+                                ('Фармстандарт');
+
+                                -- Страны
+                                INSERT INTO countries (name) VALUES
+                                ('Германия'),
+                                ('США'),
+                                ('Швейцария'),
+                                ('Словения'),
+                                ('Россия');
+
+                                -- Действующие вещества
+                                INSERT INTO active_ingredients (name) VALUES
+                                ('Амоксициллин'),
+                                ('Ибупрофен'),
+                                ('Парацетамол'),
+                                ('Аскорбиновая кислота'),
+                                ('Ацикловир');
+
+                                -- Пользователи
+                                INSERT INTO users (first_name, last_name, email, phone, password_hash, role) VALUES
+                                ('Админ', 'Админов', 'admin@pharmacy.ru', '+79001234567', 'hash_admin', 'Admin'),
+                                ('Иван', 'Иванов', 'ivanov@mail.ru', '+79001234568', 'hash_user1', 'Customer'),
+                                ('Мария', 'Петрова', 'petrova@mail.ru', '+79001234569', 'hash_user2', 'Customer'),
+                                ('Сергей', 'Сидоров', 'sidorov@mail.ru', '+79001234570', 'hash_user3', 'Customer'),
+                                ('Анна', 'Козлова', 'kozlova@mail.ru', '+79001234571', 'hash_user4', 'Customer');
+
+                                -- Производители
+                                INSERT INTO manufacturers (name, country_id) VALUES
+                                ('Bayer AG', 1),
+                                ('Pfizer Inc.', 2),
+                                ('Novartis AG', 3),
+                                ('КРКА д.д.', 4),
+                                ('Фармстандарт-УфаВИТА', 5);
+
+                                -- Лекарства
+                                INSERT INTO medicines (name, price, category_id, brand_id, manufacturer_id, indications, prescription_required, stock_quantity, is_active) VALUES
+                                ('Амоксициллин 500мг', 250.00, 1, 4, 4, 'Бактериальные инфекции', TRUE, 100, TRUE),
+                                ('Ибупрофен 400мг', 120.00, 2, 1, 1, 'Боль, воспаление, жар', FALSE, 200, TRUE),
+                                ('Парацетамол 500мг', 80.00, 2, 5, 5, 'Боль, жар', FALSE, 300, TRUE),
+                                ('Аскорбиновая кислота 1000мг', 150.00, 3, 3, 3, 'Дефицит витамина C', FALSE, 150, TRUE),
+                                ('Ацикловир 200мг', 180.00, 5, 2, 2, 'Герпес', FALSE, 120, TRUE);
+
+                                -- Партии лекарств
+                                INSERT INTO medicine_batches (medicine_id, expiry_date, batch_number, initial_quantity, current_quantity) VALUES
+                                (1, '2027-01-01', 'BATCH-001', 100, 100),
+                                (2, '2027-06-01', 'BATCH-002', 200, 200),
+                                (3, '2026-12-01', 'BATCH-003', 300, 300),
+                                (4, '2027-03-01', 'BATCH-004', 150, 150),
+                                (5, '2027-09-01', 'BATCH-005', 120, 120);
+
+                                -- Связь действующих веществ и лекарств
+                                INSERT INTO active_ingredient_medicines (medicine_id, active_ingredient_id, quantity) VALUES
+                                (1, 1, '500 мг'),
+                                (2, 2, '400 мг'),
+                                (3, 3, '500 мг'),
+                                (4, 4, '1000 мг'),
+                                (5, 5, '200 мг');
+
+                                -- Отзывы
+                                INSERT INTO reviews (user_id, medicine_id, rating, comment_text) VALUES
+                                (2, 1, 5, 'Отличный антибиотик, помог быстро'),
+                                (3, 2, 4, 'Хорошо снимает боль'),
+                                (4, 3, 5, 'Проверенное средство'),
+                                (5, 4, 3, 'Обычные витамины'),
+                                (2, 5, 4, 'Помог при герпесе');
+
+                                -- Элементы корзины
+                                INSERT INTO cart_items (user_id, medicine_id, quantity) VALUES
+                                (2, 2, 2),
+                                (3, 3, 1),
+                                (4, 4, 3),
+                                (5, 5, 1),
+                                (2, 4, 2);
+
+                                -- Элементы избранного
+                                INSERT INTO favorite_items (user_id, medicine_id) VALUES
+                                (2, 1),
+                                (3, 2),
+                                (4, 3),
+                                (5, 4),
+                                (2, 5);
+
+                                -- Заказы
+                                INSERT INTO orders (status, user_id, total_price, delivery_address) VALUES
+                                ('Получен', 2, 370.00, 'Москва, ул. Ленина, 1'),
+                                ('Доставлен', 3, 80.00, 'Санкт-Петербург, ул. Пушкина, 5'),
+                                ('В пути', 4, 150.00, 'Казань, ул. Баумана, 10'),
+                                ('Оплачен', 5, 180.00, 'Екатеринбург, ул. Мира, 3'),
+                                ('Создан', 2, 250.00, 'Москва, ул. Ленина, 1');
+
+                                -- Элементы заказов
+                                INSERT INTO order_items (order_id, medicine_id, quantity, price_at_time) VALUES
+                                (1, 2, 2, 120.00),
+                                (1, 3, 1, 80.00),
+                                (2, 3, 1, 80.00),
+                                (3, 4, 1, 150.00),
+                                (4, 5, 1, 180.00),
+                                (5, 1, 1, 250.00);";
+            using var command = new MySqlCommand(sqlQuery, connection);
+            command.ExecuteNonQuery();
         }
 
         //Таблицы
