@@ -10,10 +10,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddEnvironmentVariables();
 
 // Считывание переменных окружения
-var dbHost = Environment.GetEnvironmentVariable("DB_HOST") ?? throw new Exception("Переменная окружения не найдена");
-var dbName = Environment.GetEnvironmentVariable("DB_NAME") ?? throw new Exception("Переменная окружения не найдена");
-var dbUser = Environment.GetEnvironmentVariable("DB_USER") ?? throw new Exception("Переменная окружения не найдена");
-var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD") ?? throw new Exception("Переменная окружения не найдена");
+var dbHost = Environment.GetEnvironmentVariable("DB_HOST") ?? throw new Exception("Переменная окружения DB_HOST не найдена");
+var dbName = Environment.GetEnvironmentVariable("DB_NAME") ?? throw new Exception("Переменная окружения DB_NAME не найдена");
+var dbUser = Environment.GetEnvironmentVariable("DB_USER") ?? throw new Exception("Переменная окружения DB_USER не найдена");
+var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD") ?? throw new Exception("Переменная окружения DB_PASSWORD не найдена");
 
 // Формирование строки подключения
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new Exception("Шаблон строки подключения не найден");
