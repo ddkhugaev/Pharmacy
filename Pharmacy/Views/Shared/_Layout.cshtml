@@ -1,49 +1,58 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Pharmacy</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <title>@ViewData["Title"] - МАРТ</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@@tabler/icons-webfont@latest/tabler-icons.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Pharmacy.styles.css" asp-append-version="true" />
+    @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Pharmacy</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - Pharmacy - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <nav class="nav">
+        <div class="nav-logo">
+            <svg class="nav-logo-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="12" y="2" width="12" height="32" rx="3" fill="#8DC86B" />
+                <rect x="2" y="12" width="32" height="12" rx="3" fill="#7EC8E3" />
+                <ellipse cx="15" cy="20" rx="6" ry="8" fill="#5BA544" />
+                <ellipse cx="21" cy="18" rx="4" ry="6" fill="#5BA544" opacity="0.7" />
+            </svg>
+            <a class="nav-logo-text" asp-controller="Home" asp-action="Index">МАРТ</a>
+        </div>
+        <div class="nav-links">
+            <a asp-controller="Medicines" asp-action="Index">Каталог</a>
+            <a href="#">Акции</a>
+            <a href="#">Доставка</a>
+            <a href="#">О нас</a>
+        </div>
+        <div class="nav-actions">
+            <i class="ti ti-heart" aria-hidden="true"></i>
+            <i class="ti ti-shopping-cart" aria-hidden="true"></i>
+            <a class="btn-outline" asp-controller="Account" asp-action="Login">Войти</a>
+            <a class="btn-primary" asp-controller="Account" asp-action="Register">Регистрация</a>
+        </div>
+    </nav>
+
+    <main>
+        @RenderBody()
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-logo">
+                <svg class="nav-logo-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="12" y="2" width="12" height="32" rx="3" fill="#8DC86B" />
+                    <rect x="2" y="12" width="32" height="12" rx="3" fill="#7EC8E3" />
+                    <ellipse cx="15" cy="20" rx="6" ry="8" fill="#5BA544" />
+                    <ellipse cx="21" cy="18" rx="4" ry="6" fill="#5BA544" opacity="0.7" />
+                </svg>
+                <span class="nav-logo-text">МАРТ</span>
+            </div>
+            <div class="footer-copy">&copy; 2026 Аптека МАРТ. Все права защищены.</div>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
