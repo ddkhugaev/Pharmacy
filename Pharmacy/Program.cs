@@ -22,8 +22,21 @@ connectionString = connectionString.Replace("{DB_NAME}", dbName);
 connectionString = connectionString.Replace("{DB_USER}", dbUser);
 connectionString = connectionString.Replace("{DB_PASSWORD}", dbPassword);
 
+// Регистрируем строку подключения в контейнере зависимостей
+builder.Services.AddSingleton(connectionString);
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Добавляем схему аутентификации через куки
+builder.Services.AddAuthentication("Cookies")
+    .AddCookie("Cookies", options =>
+    {
+        options.LoginPath = "/Account/Login";
+        options.LogoutPath = "/Account/Logout";
+        options.AccessDeniedPath = "/Account/AccessDenied";
+        options.ExpireTimeSpan = TimeSpan.FromDays(7);
+    });
 
 var app = builder.Build();
 
@@ -44,6 +57,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+// Сначала устанавливаем кто пользователь, а потом что ему разрешено
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

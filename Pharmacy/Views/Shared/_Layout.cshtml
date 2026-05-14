@@ -27,10 +27,26 @@
             <a href="#">О нас</a>
         </div>
         <div class="nav-actions">
-            <i class="ti ti-heart" aria-hidden="true"></i>
-            <i class="ti ti-shopping-cart" aria-hidden="true"></i>
-            <a class="btn-outline" asp-controller="Account" asp-action="Login">Войти</a>
-            <a class="btn-primary" asp-controller="Account" asp-action="Register">Регистрация</a>
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                <i class="ti ti-heart" aria-hidden="true"></i>
+                <i class="ti ti-shopping-cart" aria-hidden="true"></i>
+                <span class="nav-user">
+                    <i class="ti ti-user-circle" aria-hidden="true"></i>
+                    @User.FindFirst(System.Security.Claims.ClaimTypes.Name)?.Value
+                </span>
+                <form asp-controller="Account" asp-action="Logout" method="post" style="margin:0">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn-outline">Выйти</button>
+                </form>
+            }
+            else
+            {
+                <i class="ti ti-heart" aria-hidden="true"></i>
+                <i class="ti ti-shopping-cart" aria-hidden="true"></i>
+                <a class="btn-outline" asp-controller="Account" asp-action="Login">Войти</a>
+                <a class="btn-primary" asp-controller="Account" asp-action="Register">Регистрация</a>
+            }
         </div>
     </nav>
 

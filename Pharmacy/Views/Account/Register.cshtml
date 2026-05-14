@@ -1,0 +1,70 @@
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "Регистрация";
+}
+
+<div class="auth-wrapper">
+    <div class="auth-card">
+        <div class="auth-logo">
+            <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="12" y="2" width="12" height="32" rx="3" fill="#8DC86B" />
+                <rect x="2" y="12" width="32" height="12" rx="3" fill="#7EC8E3" />
+                <ellipse cx="15" cy="20" rx="6" ry="8" fill="#5BA544" />
+                <ellipse cx="21" cy="18" rx="4" ry="6" fill="#5BA544" opacity="0.7" />
+            </svg>
+            <span>МАРТ</span>
+        </div>
+
+        <h1 class="auth-title">Создать аккаунт</h1>
+        <p class="auth-sub">Уже есть аккаунт? <a asp-controller="Account" asp-action="Login">Войти</a></p>
+
+        <form asp-action="Register" method="post">
+            @Html.AntiForgeryToken()
+
+            <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label asp-for="FirstName">Имя</label>
+                    <input asp-for="FirstName" class="form-input" placeholder="Иван" />
+                    <span asp-validation-for="FirstName" class="field-error"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LastName">Фамилия</label>
+                    <input asp-for="LastName" class="form-input" placeholder="Иванов" />
+                    <span asp-validation-for="LastName" class="field-error"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Email">Email</label>
+                <input asp-for="Email" class="form-input" placeholder="ivan@mail.ru" />
+                <span asp-validation-for="Email" class="field-error"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Phone">Телефон <span class="optional">— необязательно</span></label>
+                <input asp-for="Phone" class="form-input" placeholder="+7 900 000 00 00" />
+                <span asp-validation-for="Phone" class="field-error"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Password">Пароль</label>
+                <input asp-for="Password" class="form-input" placeholder="Минимум 6 символов" />
+                <span asp-validation-for="Password" class="field-error"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ConfirmPassword">Подтверждение пароля</label>
+                <input asp-for="ConfirmPassword" class="form-input" placeholder="Повторите пароль" />
+                <span asp-validation-for="ConfirmPassword" class="field-error"></span>
+            </div>
+
+            <button type="submit" class="btn-green auth-submit">Зарегистрироваться</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
