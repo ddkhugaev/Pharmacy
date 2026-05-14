@@ -1,8 +1,137 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Главная";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!-- Герой -->
+<section class="hero">
+    <div class="hero-left">
+        <div class="hero-badge">
+            <i class="ti ti-truck-delivery" aria-hidden="true"></i>
+            Доставка по всему городу
+        </div>
+        <h1 class="hero-title">Ваша онлайн‑аптека <span>МАРТ</span> — здоровье рядом</h1>
+        <p class="hero-desc">Широкий ассортимент лекарств, витаминов и товаров для здоровья. Быстрая доставка и удобный заказ онлайн.</p>
+        <div class="hero-btns">
+            <a class="btn-green" asp-controller="Medicines" asp-action="Index">Перейти в каталог</a>
+            <a class="btn-ghost" href="#">Узнать больше</a>
+        </div>
+    </div>
+    <div class="hero-right">
+        <div class="stat-card">
+            <div class="stat-icon green"><i class="ti ti-pill" aria-hidden="true"></i></div>
+            <div>
+                <div class="stat-label">Препаратов в каталоге</div>
+                <div class="stat-value">5 000+</div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon blue"><i class="ti ti-clock" aria-hidden="true"></i></div>
+            <div>
+                <div class="stat-label">Время доставки</div>
+                <div class="stat-value">от 2 часов</div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon teal"><i class="ti ti-shield-check" aria-hidden="true"></i></div>
+            <div>
+                <div class="stat-label">Только сертифицированные</div>
+                <div class="stat-value">100% оригиналы</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Поиск -->
+<div class="search-bar">
+    <i class="ti ti-search" aria-hidden="true"></i>
+    <input type="text" placeholder="Найти лекарство, витамин, бренд..." />
+    <button class="search-btn">Найти</button>
+</div>
+
+<!-- Категории -->
+<section class="categories">
+    <div class="section-title">Категории</div>
+    <div class="section-sub">Найдите нужный раздел быстро</div>
+    <div class="cat-grid">
+        <div class="cat-card">
+            <div class="cat-icon" style="background:#eaf5e4; color:#5BA544"><i class="ti ti-virus" aria-hidden="true"></i></div>
+            <div class="cat-name">Антибиотики</div>
+        </div>
+        <div class="cat-card">
+            <div class="cat-icon" style="background:#e8f4fb; color:#2B4BA0"><i class="ti ti-heart-rate-monitor" aria-hidden="true"></i></div>
+            <div class="cat-name">Сердечно-сосудистые</div>
+        </div>
+        <div class="cat-card">
+            <div class="cat-icon" style="background:#faeeda; color:#854F0B"><i class="ti ti-mood-smile" aria-hidden="true"></i></div>
+            <div class="cat-name">Витамины и БАДы</div>
+        </div>
+        <div class="cat-card">
+            <div class="cat-icon" style="background:#fbeaf0; color:#993556"><i class="ti ti-activity" aria-hidden="true"></i></div>
+            <div class="cat-name">Обезболивающие</div>
+        </div>
+        <div class="cat-card">
+            <div class="cat-icon" style="background:#e1f5ee; color:#0F6E56"><i class="ti ti-shield" aria-hidden="true"></i></div>
+            <div class="cat-name">Противовирусные</div>
+        </div>
+    </div>
+</section>
+
+<!-- Популярные препараты -->
+<section class="products">
+    <div class="products-header">
+        <div>
+            <div class="section-title">Популярные препараты</div>
+            <div class="section-sub">Часто заказываемые позиции</div>
+        </div>
+        <a class="see-all" asp-controller="Medicines" asp-action="Index">Смотреть все →</a>
+    </div>
+    <div class="prod-grid">
+        <div class="prod-card">
+            <div class="prod-img">💊</div>
+            <div class="prod-cat">Антибиотики</div>
+            <div class="prod-name">Амоксициллин 500 мг</div>
+            <div class="rx-badge">По рецепту</div>
+            <div class="prod-footer">
+                <div class="prod-price">250 ₽</div>
+                <button class="prod-btn"><i class="ti ti-plus" aria-hidden="true"></i></button>
+            </div>
+        </div>
+        <div class="prod-card">
+            <div class="prod-img">🌿</div>
+            <div class="prod-cat">Обезболивающие</div>
+            <div class="prod-name">Ибупрофен 400 мг</div>
+            <div class="prod-footer">
+                <div class="prod-price">120 ₽</div>
+                <button class="prod-btn"><i class="ti ti-plus" aria-hidden="true"></i></button>
+            </div>
+        </div>
+        <div class="prod-card">
+            <div class="prod-img">💉</div>
+            <div class="prod-cat">Обезболивающие</div>
+            <div class="prod-name">Парацетамол 500 мг</div>
+            <div class="prod-footer">
+                <div class="prod-price">80 ₽</div>
+                <button class="prod-btn"><i class="ti ti-plus" aria-hidden="true"></i></button>
+            </div>
+        </div>
+        <div class="prod-card">
+            <div class="prod-img">🍋</div>
+            <div class="prod-cat">Витамины и БАДы</div>
+            <div class="prod-name">Аскорбиновая кислота 1000 мг</div>
+            <div class="prod-footer">
+                <div class="prod-price">150 ₽</div>
+                <button class="prod-btn"><i class="ti ti-plus" aria-hidden="true"></i></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Баннер -->
+<div class="banner">
+    <div class="banner-left">
+        <div class="banner-title">Нужна консультация?</div>
+        <div class="banner-desc">Наши фармацевты помогут подобрать подходящий препарат</div>
+        <a class="btn-white" href="#">Связаться с нами</a>
+    </div>
+    <div class="banner-right">💬</div>
 </div>
