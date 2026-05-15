@@ -689,3 +689,232 @@ body {
     font-size: 22px;
     color: var(--blue-dark);
 }
+
+/* Каталог */
+.catalog-layout {
+    display: flex;
+    gap: 24px;
+    padding: 24px;
+    align-items: flex-start;
+}
+
+.catalog-sidebar {
+    width: 240px;
+    flex-shrink: 0;
+    background: var(--bg-primary);
+    border: 0.5px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    position: sticky;
+    top: 80px;
+}
+
+.sidebar-section {
+    margin-bottom: 24px;
+}
+
+.sidebar-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+}
+
+.sidebar-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 0.5px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 8px 10px;
+}
+
+    .sidebar-search .ti {
+        font-size: 16px;
+        color: var(--text-secondary);
+    }
+
+    .sidebar-search input {
+        border: none;
+        outline: none;
+        font-size: 13px;
+        background: transparent;
+        color: var(--text-primary);
+        width: 100%;
+    }
+
+.sidebar-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sidebar-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+    .sidebar-option input[type="checkbox"] {
+        accent-color: var(--green-dark);
+        width: 14px;
+        height: 14px;
+        cursor: pointer;
+    }
+
+.price-range {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+    .price-range span {
+        color: var(--text-secondary);
+        font-size: 13px;
+    }
+
+.price-input {
+    flex: 1;
+    padding: 7px 10px;
+    border: 0.5px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: 13px;
+    color: var(--text-primary);
+    background: var(--bg-primary);
+    outline: none;
+    width: 0;
+}
+
+    .price-input:focus {
+        border-color: var(--blue-dark);
+    }
+
+.sidebar-apply {
+    width: 100%;
+    padding: 9px;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.sidebar-reset {
+    width: 100%;
+    padding: 9px;
+    font-size: 13px;
+}
+
+.catalog-main {
+    flex: 1;
+    min-width: 0;
+}
+
+.catalog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 16px;
+}
+
+.catalog-sort {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sort-label {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.sort-select {
+    padding: 7px 12px;
+    border: 0.5px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: 13px;
+    color: var(--text-primary);
+    background: var(--bg-primary);
+    outline: none;
+    cursor: pointer;
+}
+
+    .sort-select:focus {
+        border-color: var(--blue-dark);
+    }
+
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+/* Пагинация */
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.page-btn {
+    width: 36px;
+    height: 36px;
+    border: 0.5px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: var(--bg-primary);
+    color: var(--text-secondary);
+    font-size: 13px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+    .page-btn:hover:not(:disabled):not(.active) {
+        border-color: var(--blue-dark);
+        color: var(--blue-dark);
+    }
+
+    .page-btn.active {
+        background: var(--blue-dark);
+        border-color: var(--blue-dark);
+        color: white;
+    }
+
+    .page-btn:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+    }
+
+.page-dots {
+    font-size: 13px;
+    color: var(--text-secondary);
+    padding: 0 4px;
+}
+
+/* Пустой каталог */
+.catalog-empty {
+    text-align: center;
+    padding: 60px 24px;
+    color: var(--text-secondary);
+}
+
+    .catalog-empty .ti {
+        font-size: 48px;
+        margin-bottom: 16px;
+        display: block;
+    }
+
+.catalog-empty-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+}
+
+.catalog-empty-sub {
+    font-size: 14px;
+}
