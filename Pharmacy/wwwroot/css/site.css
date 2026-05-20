@@ -64,16 +64,16 @@ body {
     align-items: center;
 }
 
-    .nav-links a {
-        font-size: 14px;
-        color: var(--text-secondary);
-        text-decoration: none;
-        transition: color 0.2s;
-    }
+.nav-links a {
+    font-size: 14px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+}
 
-        .nav-links a:hover {
-            color: var(--blue-dark);
-        }
+.nav-links a:hover {
+    color: var(--blue-dark);
+}
 
 .nav-actions {
     display: flex;
@@ -81,16 +81,16 @@ body {
     align-items: center;
 }
 
-    .nav-actions .ti {
-        font-size: 20px;
-        color: var(--text-secondary);
-        cursor: pointer;
-        transition: color 0.2s;
-    }
+.nav-actions .ti {
+    font-size: 20px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: color 0.2s;
+}
 
-        .nav-actions .ti:hover {
-            color: var(--blue-dark);
-        }
+.nav-actions .ti:hover {
+    color: var(--blue-dark);
+}
 
 .btn-outline {
     font-size: 13px;
@@ -104,10 +104,10 @@ body {
     transition: background 0.2s;
 }
 
-    .btn-outline:hover {
-        background: #e8f4fb;
-        color: var(--blue-dark);
-    }
+.btn-outline:hover {
+    background: #e8f4fb;
+    color: var(--blue-dark);
+}
 
 .btn-primary {
     font-size: 13px;
@@ -121,10 +121,10 @@ body {
     transition: background 0.2s;
 }
 
-    .btn-primary:hover {
-        background: #1e3a80;
-        color: white;
-    }
+.btn-primary:hover {
+    background: #1e3a80;
+    color: white;
+}
 
 .btn-green {
     font-size: 14px;
@@ -138,10 +138,10 @@ body {
     transition: background 0.2s;
 }
 
-    .btn-green:hover {
-        background: #4a8f37;
-        color: white;
-    }
+.btn-green:hover {
+    background: #4a8f37;
+    color: white;
+}
 
 .btn-ghost {
     font-size: 14px;
@@ -155,10 +155,10 @@ body {
     transition: background 0.2s;
 }
 
-    .btn-ghost:hover {
-        background: #eaf5e4;
-        color: var(--green-dark);
-    }
+.btn-ghost:hover {
+    background: #eaf5e4;
+    color: var(--green-dark);
+}
 
 .btn-white {
     font-size: 13px;
@@ -173,10 +173,10 @@ body {
     transition: opacity 0.2s;
 }
 
-    .btn-white:hover {
-        opacity: 0.9;
-        color: var(--blue-dark);
-    }
+.btn-white:hover {
+    opacity: 0.9;
+    color: var(--blue-dark);
+}
 
 /* Секции */
 .section-title {
@@ -253,9 +253,9 @@ body {
     margin-bottom: 14px;
 }
 
-    .hero-title span {
-        color: var(--green-dark);
-    }
+.hero-title span {
+    color: var(--green-dark);
+}
 
 .hero-desc {
     font-size: 14px;
@@ -298,20 +298,20 @@ body {
     flex-shrink: 0;
 }
 
-    .stat-icon.green {
-        background: #eaf5e4;
-        color: var(--green-dark);
-    }
+.stat-icon.green {
+    background: #eaf5e4;
+    color: var(--green-dark);
+}
 
-    .stat-icon.blue {
-        background: #e8f4fb;
-        color: var(--blue-dark);
-    }
+.stat-icon.blue {
+    background: #e8f4fb;
+    color: var(--blue-dark);
+}
 
-    .stat-icon.teal {
-        background: #e1f5ee;
-        color: #0F6E56;
-    }
+.stat-icon.teal {
+    background: #e1f5ee;
+    color: #0F6E56;
+}
 
 .stat-label {
     font-size: 12px;
@@ -340,19 +340,19 @@ body {
     box-shadow: 0 2px 12px rgba(0,0,0,0.06);
 }
 
-    .search-bar .ti {
-        font-size: 18px;
-        color: var(--text-secondary);
-    }
+.search-bar .ti {
+    font-size: 18px;
+    color: var(--text-secondary);
+}
 
-    .search-bar input {
-        flex: 1;
-        border: none;
-        outline: none;
-        font-size: 14px;
-        background: transparent;
-        color: var(--text-primary);
-    }
+.search-bar input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    background: transparent;
+    color: var(--text-primary);
+}
 
 .search-btn {
     padding: 8px 18px;
@@ -365,9 +365,9 @@ body {
     transition: background 0.2s;
 }
 
-    .search-btn:hover {
-        background: #4a8f37;
-    }
+.search-btn:hover {
+    background: #4a8f37;
+}
 
 /* Категории */
 .categories {
@@ -390,9 +390,9 @@ body {
     transition: border-color 0.2s;
 }
 
-    .cat-card:hover {
-        border-color: var(--green-main);
-    }
+.cat-card:hover {
+    border-color: var(--green-main);
+}
 
 .cat-icon {
     width: 44px;
@@ -442,9 +442,9 @@ body {
     transition: border-color 0.2s;
 }
 
-    .prod-card:hover {
-        border-color: var(--green-main);
-    }
+.prod-card:hover {
+    border-color: var(--green-main);
+}
 
 .prod-img {
     width: 100%;
@@ -498,9 +498,9 @@ body {
     transition: background 0.2s;
 }
 
-    .prod-btn:hover {
-        background: #4a8f37;
-    }
+.prod-btn:hover {
+    background: #4a8f37;
+}
 
 .rx-badge {
     display: inline-block;
@@ -565,17 +565,17 @@ body {
     margin-bottom: 24px;
 }
 
-    .auth-logo svg {
-        width: 32px;
-        height: 32px;
-    }
+.auth-logo svg {
+    width: 32px;
+    height: 32px;
+}
 
-    .auth-logo span {
-        font-size: 18px;
-        font-weight: 500;
-        color: var(--blue-dark);
-        letter-spacing: 2px;
-    }
+.auth-logo span {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--blue-dark);
+    letter-spacing: 2px;
+}
 
 .auth-title {
     font-size: 22px;
@@ -590,14 +590,14 @@ body {
     margin-bottom: 24px;
 }
 
-    .auth-sub a {
-        color: var(--blue-dark);
-        text-decoration: none;
-    }
+.auth-sub a {
+    color: var(--blue-dark);
+    text-decoration: none;
+}
 
-        .auth-sub a:hover {
-            text-decoration: underline;
-        }
+.auth-sub a:hover {
+    text-decoration: underline;
+}
 
 .form-row {
     display: grid;
@@ -612,11 +612,11 @@ body {
     margin-bottom: 16px;
 }
 
-    .form-group label {
-        font-size: 13px;
-        font-weight: 500;
-        color: var(--text-primary);
-    }
+.form-group label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
 
 .optional {
     font-weight: 400;
@@ -634,9 +634,9 @@ body {
     transition: border-color 0.2s;
 }
 
-    .form-input:focus {
-        border-color: var(--blue-dark);
-    }
+.form-input:focus {
+    border-color: var(--blue-dark);
+}
 
 .field-error {
     font-size: 12px;
@@ -653,10 +653,10 @@ body {
     margin-bottom: 16px;
 }
 
-    .validation-summary ul {
-        margin: 0;
-        padding-left: 16px;
-    }
+.validation-summary ul {
+    margin: 0;
+    padding-left: 16px;
+}
 
 .form-check {
     display: flex;
@@ -665,11 +665,11 @@ body {
     margin-bottom: 20px;
 }
 
-    .form-check label {
-        font-size: 13px;
-        color: var(--text-secondary);
-        cursor: pointer;
-    }
+.form-check label {
+    font-size: 13px;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
 
 .auth-submit {
     width: 100%;
@@ -729,19 +729,19 @@ body {
     padding: 8px 10px;
 }
 
-    .sidebar-search .ti {
-        font-size: 16px;
-        color: var(--text-secondary);
-    }
+.sidebar-search .ti {
+    font-size: 16px;
+    color: var(--text-secondary);
+}
 
-    .sidebar-search input {
-        border: none;
-        outline: none;
-        font-size: 13px;
-        background: transparent;
-        color: var(--text-primary);
-        width: 100%;
-    }
+.sidebar-search input {
+    border: none;
+    outline: none;
+    font-size: 13px;
+    background: transparent;
+    color: var(--text-primary);
+    width: 100%;
+}
 
 .sidebar-options {
     display: flex;
@@ -758,12 +758,12 @@ body {
     cursor: pointer;
 }
 
-    .sidebar-option input[type="checkbox"] {
-        accent-color: var(--green-dark);
-        width: 14px;
-        height: 14px;
-        cursor: pointer;
-    }
+.sidebar-option input[type="checkbox"] {
+    accent-color: var(--green-dark);
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+}
 
 .price-range {
     display: flex;
@@ -771,10 +771,10 @@ body {
     gap: 8px;
 }
 
-    .price-range span {
-        color: var(--text-secondary);
-        font-size: 13px;
-    }
+.price-range span {
+    color: var(--text-secondary);
+    font-size: 13px;
+}
 
 .price-input {
     flex: 1;
@@ -788,9 +788,9 @@ body {
     width: 0;
 }
 
-    .price-input:focus {
-        border-color: var(--blue-dark);
-    }
+.price-input:focus {
+    border-color: var(--blue-dark);
+}
 
 .sidebar-apply {
     width: 100%;
@@ -839,9 +839,9 @@ body {
     cursor: pointer;
 }
 
-    .sort-select:focus {
-        border-color: var(--blue-dark);
-    }
+.sort-select:focus {
+    border-color: var(--blue-dark);
+}
 
 .catalog-grid {
     display: grid;
@@ -873,21 +873,21 @@ body {
     transition: all 0.2s;
 }
 
-    .page-btn:hover:not(:disabled):not(.active) {
-        border-color: var(--blue-dark);
-        color: var(--blue-dark);
-    }
+.page-btn:hover:not(:disabled):not(.active) {
+    border-color: var(--blue-dark);
+    color: var(--blue-dark);
+}
 
-    .page-btn.active {
-        background: var(--blue-dark);
-        border-color: var(--blue-dark);
-        color: white;
-    }
+.page-btn.active {
+    background: var(--blue-dark);
+    border-color: var(--blue-dark);
+    color: white;
+}
 
-    .page-btn:disabled {
-        opacity: 0.4;
-        cursor: not-allowed;
-    }
+.page-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
 
 .page-dots {
     font-size: 13px;
@@ -902,11 +902,11 @@ body {
     color: var(--text-secondary);
 }
 
-    .catalog-empty .ti {
-        font-size: 48px;
-        margin-bottom: 16px;
-        display: block;
-    }
+.catalog-empty .ti {
+    font-size: 48px;
+    margin-bottom: 16px;
+    display: block;
+}
 
 .catalog-empty-title {
     font-size: 18px;
@@ -917,4 +917,221 @@ body {
 
 .catalog-empty-sub {
     font-size: 14px;
+}
+
+/* Страница лекарства */
+.detail-layout {
+    padding: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.detail-top {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 32px;
+    background: var(--bg-primary);
+    border: 0.5px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+}
+
+.detail-image {
+    width: 220px;
+    flex-shrink: 0;
+}
+
+.detail-image img {
+    width: 100%;
+    border-radius: var(--radius-md);
+    object-fit: contain;
+}
+
+.detail-image-placeholder {
+    width: 100%;
+    height: 220px;
+    background: #f0f9f0;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 64px;
+}
+
+.detail-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.detail-category {
+    font-size: 12px;
+    color: var(--green-dark);
+    margin-bottom: 8px;
+}
+
+.detail-name {
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.3;
+    margin-bottom: 14px;
+}
+
+.detail-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.detail-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.detail-meta-item .ti {
+    font-size: 15px;
+}
+
+.detail-ingredients {
+    margin-bottom: 14px;
+    font-size: 13px;
+}
+
+.detail-ingredients-label {
+    color: var(--text-secondary);
+    margin-right: 6px;
+}
+
+.detail-ingredient {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: #eaf5e4;
+    color: var(--green-dark);
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+}
+
+.detail-ingredient-qty {
+    color: var(--text-secondary);
+    font-size: 11px;
+}
+
+.detail-badges {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.badge {
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+.badge-rx {
+    background: #faeeda;
+    color: #854F0B;
+}
+
+.badge-otc {
+    background: #eaf5e4;
+    color: var(--green-dark);
+}
+
+.badge-in-stock {
+    background: #e8f4fb;
+    color: var(--blue-dark);
+}
+
+.badge-out-of-stock {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.detail-price-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.detail-price {
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--blue-dark);
+}
+
+.detail-add-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+/* Аккордеон */
+.accordion {
+    background: var(--bg-primary);
+    border: 0.5px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.accordion-item {
+    border-bottom: 0.5px solid var(--border-color);
+}
+
+.accordion-item:last-child {
+    border-bottom: none;
+}
+
+.accordion-btn {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    text-align: left;
+    transition: background 0.2s;
+}
+
+.accordion-btn:hover {
+    background: var(--bg-secondary);
+}
+
+.accordion-btn .ti {
+    font-size: 16px;
+    color: var(--text-secondary);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+}
+
+.accordion-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.accordion-body p {
+    padding: 0 20px 16px;
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+a.prod-card {
+    display: block;
+    text-decoration: none;
 }

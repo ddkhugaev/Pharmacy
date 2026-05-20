@@ -1,0 +1,268 @@
+﻿@model MedicineDetailViewModel
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<div class="detail-layout">
+
+    <!-- Верхняя часть -->
+    <div class="detail-top">
+
+        <!-- Изображение -->
+        <div class="detail-image">
+            @if (Model.ImageUrl != null)
+            {
+                <img src="@Model.ImageUrl" alt="@Model.Name" />
+            }
+            else
+            {
+                <div class="detail-image-placeholder">💊</div>
+            }
+        </div>
+
+        <!-- Основная информация -->
+        <div class="detail-info">
+            @if (Model.CategoryName != null)
+            {
+                <div class="detail-category">@Model.CategoryName</div>
+            }
+
+            <h1 class="detail-name">@Model.Name</h1>
+
+            <div class="detail-meta">
+                @if (Model.BrandName != null)
+                {
+                    <span class="detail-meta-item">
+                        <i class="ti ti-building" aria-hidden="true"></i>
+                        @Model.BrandName
+                    </span>
+                }
+                @if (Model.ManufacturerName != null)
+                {
+                    <span class="detail-meta-item">
+                        <i class="ti ti-factory" aria-hidden="true"></i>
+                        @Model.ManufacturerName
+                    </span>
+                }
+                @if (Model.CountryName != null)
+                {
+                    <span class="detail-meta-item">
+                        <i class="ti ti-map-pin" aria-hidden="true"></i>
+                        @Model.CountryName
+                    </span>
+                }
+            </div>
+
+            @if (Model.ActiveIngredients.Any())
+            {
+                <div class="detail-ingredients">
+                    <span class="detail-ingredients-label">Действующие вещества:</span>
+                    @foreach (var ingredient in Model.ActiveIngredients)
+                    {
+                        <span class="detail-ingredient">
+                            @ingredient.Name
+                            @if (ingredient.Quantity != null)
+                            {
+                                <span class="detail-ingredient-qty">@ingredient.Quantity</span>
+                            }
+                        </span>
+                    }
+                </div>
+            }
+
+            <div class="detail-badges">
+                @if (Model.PrescriptionRequired)
+                {
+                    <span class="badge badge-rx">По рецепту</span>
+                }
+                else
+                {
+                    <span class="badge badge-otc">Без рецепта</span>
+                }
+
+                @if (Model.StockQuantity > 0)
+                {
+                    <span class="badge badge-in-stock">В наличии</span>
+                }
+                else
+                {
+                    <span class="badge badge-out-of-stock">Нет в наличии</span>
+                }
+            </div>
+
+            <div class="detail-price-row">
+                <div class="detail-price">@Model.Price.ToString("N0") ₽</div>
+                @if (Model.StockQuantity > 0)
+                {
+                    <button class="btn-green detail-add-btn">
+                        <i class="ti ti-shopping-cart" aria-hidden="true"></i>
+                        В корзину
+                    </button>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Аккордеон -->
+    <div class="accordion">
+
+        @if (Model.Indications != null)
+        {
+            <div class="accordion-item">
+                <button class="accordion-btn" onclick="toggleAccordion(this)">
+                    <span>Показания к применению</span>
+                    <i class="ti ti-chevron-down" aria-hidden="true"></i>
+                </button>
+                <div class="accordion-body">
+                    <p>@Model.Indications</p>
+                </div>
+            </div>
+        }
+
+        @if (Model.Administration != null)
+        {
+            <div class="accordion-item">
+                <button class="accordion-btn" onclick="toggleAccordion(this)">
+                    <span>Способ применения</span>
+                    <i class="ti ti-chevron-down" aria-hidden="true"></i>
+                </button>
+                <div class="accordion-body">
+                    <p>@Model.Administration</p>
+                </div>
+            </div>
+        }
+
+        @if (Model.Composition != null)
+        {
+            <div class="accordion-item">
+                <button class="accordion-btn" onclick="toggleAccordion(this)">
+                    <span>Состав</span>
+                    <i class="ti ti-chevron-down" aria-hidden="true"></i>
+                </button>
+                <div class="accordion-body">
+                    <p>@Model.Composition</p>
+                </div>
+            </div>
+        }
+
+        @if (Model.PharmaGroup != null)
+        {
+            <div class="accordion-item">
+                <button class="accordion-btn" onclick="toggleAccordion(this)">
+                    <span>Фармакологическая группа</span>
+                    <i class="ti ti-chevron-down" aria-hidden="true"></i>
+                </button>
+                <div class="accordion-body">
+                    <p>@Model.PharmaGroup</p>
+                </div>
+            </div>
+        }
+
+        @if (Model.PharmaProps != null)
+        {
+            <div class="accordion-item">
+                <button class="accordion-btn" onclick="toggleAccordion(this)">
+                    <span>Фармакологические свойства</span>
+                    <i class="ti ti-chevron-down" aria-hidden="true"></i>
+                </button>
+                <div class="accordion-body">
+                    <p>@Model.PharmaProps</p>
+                </div>
+            </div>
+        }
+
+        @if (Model.Contraindications != null)
+        {
+            <div class="accordion-item">
+                <button class="accordion-btn" onclick="toggleAccordion(this)">
+                    <span>Противопоказания</span>
+                    <i class="ti ti-chevron-down" aria-hidden="true"></i>
+                </button>
+                <div class="accordion-body">
+                    <p>@Model.Contraindications</p>
+                </div>
+            </div>
+        }
+
+        @if (Model.SideEffects != null)
+        {
+            <div class="accordion-item">
+                <button class="accordion-btn" onclick="toggleAccordion(this)">
+                    <span>Побочные эффекты</span>
+                    <i class="ti ti-chevron-down" aria-hidden="true"></i>
+                </button>
+                <div class="accordion-body">
+                    <p>@Model.SideEffects</p>
+                </div>
+            </div>
+        }
+
+        @if (Model.Overdose != null)
+        {
+            <div class="accordion-item">
+                <button class="accordion-btn" onclick="toggleAccordion(this)">
+                    <span>Передозировка</span>
+                    <i class="ti ti-chevron-down" aria-hidden="true"></i>
+                </button>
+                <div class="accordion-body">
+                    <p>@Model.Overdose</p>
+                </div>
+            </div>
+        }
+
+        @if (Model.DrugInteractions != null)
+        {
+            <div class="accordion-item">
+                <button class="accordion-btn" onclick="toggleAccordion(this)">
+                    <span>Взаимодействие с другими препаратами</span>
+                    <i class="ti ti-chevron-down" aria-hidden="true"></i>
+                </button>
+                <div class="accordion-body">
+                    <p>@Model.DrugInteractions</p>
+                </div>
+            </div>
+        }
+
+        @if (Model.SpecialInstructions != null)
+        {
+            <div class="accordion-item">
+                <button class="accordion-btn" onclick="toggleAccordion(this)">
+                    <span>Особые указания</span>
+                    <i class="ti ti-chevron-down" aria-hidden="true"></i>
+                </button>
+                <div class="accordion-body">
+                    <p>@Model.SpecialInstructions</p>
+                </div>
+            </div>
+        }
+
+        @if (Model.DispensingConditions != null)
+        {
+            <div class="accordion-item">
+                <button class="accordion-btn" onclick="toggleAccordion(this)">
+                    <span>Условия отпуска</span>
+                    <i class="ti ti-chevron-down" aria-hidden="true"></i>
+                </button>
+                <div class="accordion-body">
+                    <p>@Model.DispensingConditions</p>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function toggleAccordion(btn) {
+            const item = btn.parentElement;
+            const body = item.querySelector('.accordion-body');
+            const icon = btn.querySelector('.ti');
+            const isOpen = item.classList.contains('open');
+
+            item.classList.toggle('open', !isOpen);
+            body.style.maxHeight = isOpen ? null : body.scrollHeight + 'px';
+            icon.style.transform = isOpen ? '' : 'rotate(180deg)';
+        }
+    </script>
+}

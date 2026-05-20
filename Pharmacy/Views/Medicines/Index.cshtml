@@ -98,7 +98,7 @@
             <div class="catalog-grid">
                 @foreach (var medicine in Model.Medicines)
                 {
-                    <div class="prod-card">
+                    <a class="prod-card" asp-action="Details" asp-route-id="@medicine.Id">
                         <div class="prod-img">💊</div>
                         @if (medicine.CategoryName != null)
                         {
@@ -113,7 +113,7 @@
                             <div class="prod-price">@medicine.Price.ToString("N0") ₽</div>
                             <button class="prod-btn"><i class="ti ti-plus" aria-hidden="true"></i></button>
                         </div>
-                    </div>
+                    </a>
                 }
             </div>
         }
