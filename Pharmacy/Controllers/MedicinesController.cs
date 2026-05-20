@@ -157,5 +157,88 @@ namespace Pharmacy.Controllers
 
             return View(model);
         }
+
+        public IActionResult Details(int id)
+        {
+            using var connection = new MySqlConnection(_connectionString);
+            connection.Open();
+
+            string query = @"SELECT m.id, m.name, m.price, m.rating, m.image_url,
+                            m.prescription_required, m.stock_quantity, m.is_active,
+                            m.indications, m.administration, m.composition,
+                            m.pharma_group, m.pharma_props, m.contraindications,
+                            m.side_effects, m.overdose, m.drug_interactions,
+                            m.special_instructions, m.dosage_form, m.dispensing_conditions,
+                            c.name AS category_name,
+                            b.name AS brand_name,
+                            mf.name AS manufacturer_name,
+                            co.name AS country_name
+                     FROM medicines m
+                     LEFT JOIN categories c ON m.category_id = c.id
+                     LEFT JOIN brands b ON m.brand_id = b.id
+                     LEFT JOIN manufacturers mf ON m.manufacturer_id = mf.id
+                     LEFT JOIN countries co ON mf.country_id = co.id
+                     WHERE m.id = @id AND m.is_active = TRUE;";
+
+            using var command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@id", id);
+
+            using var reader = command.ExecuteReader();
+
+            if (!reader.Read())
+                return NotFound();
+
+            var model = new MedicineDetailViewModel
+            {
+                Id = reader.GetInt32("id"),
+                Name = reader.GetString("name"),
+                Price = reader.GetDecimal("price"),
+                Rating = reader.GetDecimal("rating"),
+                ImageUrl = reader.IsDBNull(reader.GetOrdinal("image_url")) ? null : reader.GetString("image_url"),
+                PrescriptionRequired = reader.GetBoolean("prescription_required"),
+                StockQuantity = reader.GetInt32("stock_quantity"),
+                IsActive = reader.GetBoolean("is_active"),
+                CategoryName = reader.IsDBNull(reader.GetOrdinal("category_name")) ? null : reader.GetString("category_name"),
+                BrandName = reader.IsDBNull(reader.GetOrdinal("brand_name")) ? null : reader.GetString("brand_name"),
+                ManufacturerName = reader.IsDBNull(reader.GetOrdinal("manufacturer_name")) ? null : reader.GetString("manufacturer_name"),
+                CountryName = reader.IsDBNull(reader.GetOrdinal("country_name")) ? null : reader.GetString("country_name"),
+                Indications = reader.IsDBNull(reader.GetOrdinal("indications")) ? null : reader.GetString("indications"),
+                Administration = reader.IsDBNull(reader.GetOrdinal("administration")) ? null : reader.GetString("administration"),
+                Composition = reader.IsDBNull(reader.GetOrdinal("composition")) ? null : reader.GetString("composition"),
+                PharmaGroup = reader.IsDBNull(reader.GetOrdinal("pharma_group")) ? null : reader.GetString("pharma_group"),
+                PharmaProps = reader.IsDBNull(reader.GetOrdinal("pharma_props")) ? null : reader.GetString("pharma_props"),
+                Contraindications = reader.IsDBNull(reader.GetOrdinal("contraindications")) ? null : reader.GetString("contraindications"),
+                SideEffects = reader.IsDBNull(reader.GetOrdinal("side_effects")) ? null : reader.GetString("side_effects"),
+                Overdose = reader.IsDBNull(reader.GetOrdinal("overdose")) ? null : reader.GetString("overdose"),
+                DrugInteractions = reader.IsDBNull(reader.GetOrdinal("drug_interactions")) ? null : reader.GetString("drug_interactions"),
+                SpecialInstructions = reader.IsDBNull(reader.GetOrdinal("special_instructions")) ? null : reader.GetString("special_instructions"),
+                DosageForm = reader.IsDBNull(reader.GetOrdinal("dosage_form")) ? null : reader.GetString("dosage_form"),
+                DispensingConditions = reader.IsDBNull(reader.GetOrdinal("dispensing_conditions")) ? null : reader.GetString("dispensing_conditions"),
+            };
+            reader.Close();
+
+            // Загружаем действующие вещества
+            string ingredientsQuery = @"SELECT ai.name, aim.quantity
+                                 FROM active_ingredient_medicines aim
+                                 JOIN active_ingredients ai ON aim.active_ingredient_id = ai.id
+                                 WHERE aim.medicine_id = @id;";
+
+            using var ingredientsCommand = new MySqlCommand(ingredientsQuery, connection);
+            ingredientsCommand.Parameters.AddWithValue("@id", id);
+
+            using var ingredientsReader = ingredientsCommand.ExecuteReader();
+            while (ingredientsReader.Read())
+            {
+                model.ActiveIngredients.Add(new ActiveIngredientViewModel
+                {
+                    Name = ingredientsReader.GetString("name"),
+                    Quantity = ingredientsReader.IsDBNull(ingredientsReader.GetOrdinal("quantity"))
+                        ? null
+                        : ingredientsReader.GetString("quantity")
+                });
+            }
+
+            return View(model);
+        }
     }
 }
