@@ -115,6 +115,18 @@ namespace Pharmacy.Controllers
             medicinesCommand.Parameters.AddWithValue("@pageSize", pageSize);
             medicinesCommand.Parameters.AddWithValue("@offset", offset);
 
+            var favoriteIds = new HashSet<int>();
+            if (User.Identity?.IsAuthenticated == true)
+            {
+                var userId = User.FindFirst("id")?.Value;
+                string favQuery = "SELECT medicine_id FROM favorite_items WHERE user_id = @userId;";
+                using var favCommand = new MySqlCommand(favQuery, connection);
+                favCommand.Parameters.AddWithValue("@userId", userId);
+                using var favReader = favCommand.ExecuteReader();
+                while (favReader.Read())
+                    favoriteIds.Add(favReader.GetInt32("medicine_id"));
+            }
+
             var medicines = new List<MedicineViewModel>();
             using var medicinesReader = medicinesCommand.ExecuteReader();
             while (medicinesReader.Read())
@@ -135,7 +147,8 @@ namespace Pharmacy.Controllers
                         : medicinesReader.GetString("category_name"),
                     BrandName = medicinesReader.IsDBNull(medicinesReader.GetOrdinal("brand_name"))
                         ? null
-                        : medicinesReader.GetString("brand_name")
+                        : medicinesReader.GetString("brand_name"),
+                    IsFavorite = favoriteIds.Contains(medicinesReader.GetInt32("id"))
                 });
             }
 

@@ -29,7 +29,9 @@
         <div class="nav-actions">
             @if (User.Identity?.IsAuthenticated == true)
             {
-                <i class="ti ti-heart" aria-hidden="true"></i>
+                <a asp-controller="Favorites" asp-action="Index" class="nav-icon-btn" title="Избранное">
+                    <i class="ti ti-heart" aria-hidden="true"></i>
+                </a>
                 <i class="ti ti-shopping-cart" aria-hidden="true"></i>
                 <a class="nav-user" asp-controller="Profile" asp-action="Index">
                     <i class="ti ti-user-circle" aria-hidden="true"></i>
@@ -42,7 +44,9 @@
             }
             else
             {
-                <i class="ti ti-heart" aria-hidden="true"></i>
+                <a asp-controller="Favorites" asp-action="Index" class="nav-icon-btn" title="Избранное">
+                    <i class="ti ti-heart" aria-hidden="true"></i>
+                </a>
                 <i class="ti ti-shopping-cart" aria-hidden="true"></i>
                 <a class="btn-outline" asp-controller="Account" asp-action="Login">Войти</a>
                 <a class="btn-primary" asp-controller="Account" asp-action="Register">Регистрация</a>

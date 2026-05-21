@@ -92,6 +92,18 @@
 
             <div class="detail-price-row">
                 <div class="detail-price">@Model.Price.ToString("N0") ₽</div>
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    <button class="fav-btn" id="fav-btn" onclick="toggleFavorite(this, @Model.Id)" title="В избранное">
+                        <i class="ti ti-heart" aria-hidden="true"></i>
+                    </button>
+                }
+                else
+                {
+                    <a class="fav-btn" asp-controller="Account" asp-action="Login" title="В избранное">
+                        <i class="ti ti-heart" aria-hidden="true"></i>
+                    </a>
+                }
                 @if (Model.StockQuantity > 0)
                 {
                     <button class="btn-green detail-add-btn">
@@ -263,6 +275,25 @@
             item.classList.toggle('open', !isOpen);
             body.style.maxHeight = isOpen ? null : body.scrollHeight + 'px';
             icon.style.transform = isOpen ? '' : 'rotate(180deg)';
+        }
+
+        async function toggleFavorite(btn, medicineId) {
+            const response = await fetch('/Favorites/Toggle', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ medicineId: medicineId })
+            });
+
+            const result = await response.json();
+            const icon = btn.querySelector('.ti');
+
+            if (result.isFavorite) {
+                btn.classList.add('fav-btn-active');
+                icon.classList.replace('ti-heart', 'ti-heart-filled');
+            } else {
+                btn.classList.remove('fav-btn-active');
+                icon.classList.replace('ti-heart-filled', 'ti-heart');
+            }
         }
     </script>
 }

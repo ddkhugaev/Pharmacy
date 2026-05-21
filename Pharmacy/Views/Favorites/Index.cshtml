@@ -1,0 +1,74 @@
+﻿@model List<FavoriteItemViewModel>
+@{
+    ViewData["Title"] = "Избранное";
+}
+
+<div class="favorites-layout">
+    <div class="favorites-header">
+        <div class="section-title">Избранное</div>
+        <div class="section-sub">@Model.Count товаров</div>
+    </div>
+
+    @if (Model.Any())
+    {
+        <div class="catalog-grid">
+            @foreach (var medicine in Model)
+            {
+                <div class="prod-card">
+                    <a asp-controller="Medicines" asp-action="Details" asp-route-id="@medicine.Id" class="prod-card-link">
+                        <div class="prod-img">💊</div>
+                        @if (medicine.CategoryName != null)
+                        {
+                            <div class="prod-cat">@medicine.CategoryName</div>
+                        }
+                        <div class="prod-name">@medicine.Name</div>
+                        @if (medicine.PrescriptionRequired)
+                        {
+                            <div class="rx-badge">По рецепту</div>
+                        }
+                    </a>
+                    <div class="prod-footer">
+                        <div class="prod-price">@medicine.Price.ToString("N0") ₽</div>
+                        <button class="fav-btn fav-btn-active"
+                                onclick="toggleFavorite(this, @medicine.Id)"
+                                title="Убрать из избранного">
+                            <i class="ti ti-heart-filled" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="catalog-empty">
+            <i class="ti ti-heart-off" aria-hidden="true"></i>
+            <div class="catalog-empty-title">Избранное пусто</div>
+            <div class="catalog-empty-sub">Добавляйте товары, нажимая на сердечко</div>
+            <a class="btn-green" asp-controller="Medicines" asp-action="Index" style="margin-top: 16px; display: inline-block">Перейти в каталог</a>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        async function toggleFavorite(btn, medicineId) {
+            const response = await fetch('/Favorites/Toggle', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ medicineId: medicineId })
+            });
+
+            const result = await response.json();
+
+            if (!result.isFavorite) {
+                btn.closest('.prod-card').remove();
+
+                const grid = document.querySelector('.catalog-grid');
+                if (!grid || grid.children.length === 0) {
+                    location.reload();
+                }
+            }
+        }
+    </script>
+}

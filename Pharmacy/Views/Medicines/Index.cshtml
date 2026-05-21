@@ -25,7 +25,7 @@
                             <input type="checkbox"
                                    name="selectedCategories"
                                    value="@category.Id"
-                                   @(Model.SelectedCategories.Contains(category.Id) ? "checked" : "") />
+                            @(Model.SelectedCategories.Contains(category.Id) ? "checked" : "") />
                             @category.Name
                         </label>
                     }
@@ -48,17 +48,17 @@
                 <div class="sidebar-options">
                     <label class="sidebar-option">
                         <input type="radio" name="prescriptionRequired" value=""
-                               @(Model.PrescriptionRequired == null ? "checked" : "") />
+                        @(Model.PrescriptionRequired == null ? "checked" : "") />
                         Все
                     </label>
                     <label class="sidebar-option">
                         <input type="radio" name="prescriptionRequired" value="false"
-                               @(Model.PrescriptionRequired == false ? "checked" : "") />
+                        @(Model.PrescriptionRequired == false ? "checked" : "") />
                         Без рецепта
                     </label>
                     <label class="sidebar-option">
                         <input type="radio" name="prescriptionRequired" value="true"
-                               @(Model.PrescriptionRequired == true ? "checked" : "") />
+                        @(Model.PrescriptionRequired == true ? "checked" : "") />
                         По рецепту
                     </label>
                 </div>
@@ -98,22 +98,40 @@
             <div class="catalog-grid">
                 @foreach (var medicine in Model.Medicines)
                 {
-                    <a class="prod-card" asp-action="Details" asp-route-id="@medicine.Id">
-                        <div class="prod-img">💊</div>
-                        @if (medicine.CategoryName != null)
-                        {
-                            <div class="prod-cat">@medicine.CategoryName</div>
-                        }
-                        <div class="prod-name">@medicine.Name</div>
-                        @if (medicine.PrescriptionRequired)
-                        {
-                            <div class="rx-badge">По рецепту</div>
-                        }
+                    <div class="prod-card">
+                        <a class="prod-card-link" asp-action="Details" asp-route-id="@medicine.Id">
+                            <div class="prod-img">💊</div>
+                            @if (medicine.CategoryName != null)
+                            {
+                                <div class="prod-cat">@medicine.CategoryName</div>
+                            }
+                            <div class="prod-name">@medicine.Name</div>
+                            @if (medicine.PrescriptionRequired)
+                            {
+                                <div class="rx-badge">По рецепту</div>
+                            }
+                        </a>
                         <div class="prod-footer">
                             <div class="prod-price">@medicine.Price.ToString("N0") ₽</div>
-                            <button class="prod-btn"><i class="ti ti-plus" aria-hidden="true"></i></button>
+                            <div class="prod-actions">
+                                @if (User.Identity?.IsAuthenticated == true)
+                                {
+                                    <button class="fav-btn @(medicine.IsFavorite ? "fav-btn-active" : "")"
+                                            onclick="toggleFavorite(this, @medicine.Id)"
+                                            title="В избранное">
+                                        <i class="ti @(medicine.IsFavorite ? "ti-heart-filled" : "ti-heart")" aria-hidden="true"></i>
+                                    </button>
+                                }
+                                else
+                                {
+                                    <a class="fav-btn" asp-controller="Account" asp-action="Login" title="В избранное">
+                                        <i class="ti ti-heart" aria-hidden="true"></i>
+                                    </a>
+                                }
+                                <button class="prod-btn"><i class="ti ti-plus" aria-hidden="true"></i></button>
+                            </div>
                         </div>
-                    </a>
+                    </div>
                 }
             </div>
         }
@@ -195,6 +213,25 @@
             url.searchParams.set('sortBy', value);
             url.searchParams.set('page', '1');
             window.location.href = url.toString();
+        }
+
+        async function toggleFavorite(btn, medicineId) {
+            const response = await fetch('/Favorites/Toggle', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ medicineId: medicineId })
+            });
+
+            const result = await response.json();
+            const icon = btn.querySelector('.ti');
+
+            if (result.isFavorite) {
+                btn.classList.add('fav-btn-active');
+                icon.classList.replace('ti-heart', 'ti-heart-filled');
+            } else {
+                btn.classList.remove('fav-btn-active');
+                icon.classList.replace('ti-heart-filled', 'ti-heart');
+            }
         }
     </script>
 }
