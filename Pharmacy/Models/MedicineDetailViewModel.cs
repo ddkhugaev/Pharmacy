@@ -34,10 +34,4 @@
         public string? DosageForm { get; set; }
         public string? DispensingConditions { get; set; }
     }
-
-    public class ActiveIngredientViewModel
-    {
-        public string Name { get; set; } = string.Empty;
-        public string? Quantity { get; set; }
-    }
 }
