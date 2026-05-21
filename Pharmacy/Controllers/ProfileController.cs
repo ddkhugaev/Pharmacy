@@ -2,8 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 using Pharmacy.Models;
-using System.Security.Claims;
-using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
 
 namespace Pharmacy.Controllers
 {
