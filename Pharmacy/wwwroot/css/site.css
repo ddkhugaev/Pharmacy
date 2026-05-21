@@ -683,6 +683,12 @@ body {
     gap: 6px;
     font-size: 14px;
     color: var(--text-primary);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.nav-user:hover {
+    color: var(--blue-dark);
 }
 
 .nav-user .ti {
@@ -1134,4 +1140,108 @@ body {
 a.prod-card {
     display: block;
     text-decoration: none;
+}
+
+/* Профиль */
+.profile-wrapper {
+    min-height: calc(100vh - 130px);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 32px 24px;
+}
+
+.profile-card {
+    background: var(--bg-primary);
+    border: 0.5px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 36px;
+    width: 100%;
+    max-width: 540px;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 0.5px solid var(--border-color);
+}
+
+.profile-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #e8f4fb;
+    color: var(--blue-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    flex-shrink: 0;
+}
+
+.profile-name {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.profile-role {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.profile-section {
+    margin-bottom: 28px;
+}
+
+.profile-section-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+}
+
+.profile-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.profile-field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 0.5px solid var(--border-color);
+}
+
+.profile-field:last-child {
+    border-bottom: none;
+}
+
+.profile-field-label {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.profile-field-value {
+    font-size: 14px;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.profile-edit-btn {
+    display: block;
+    text-align: center;
+    margin-top: 8px;
+}
+
+.profile-edit-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
 }

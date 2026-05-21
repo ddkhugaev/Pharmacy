@@ -1,0 +1,43 @@
+﻿@model EditProfileViewModel
+@{
+    ViewData["Title"] = "Редактирование профиля";
+}
+
+<div class="profile-wrapper">
+    <div class="profile-card">
+        <div class="profile-section-title" style="margin-bottom: 24px">Редактирование профиля</div>
+
+        <form asp-action="Edit" method="post">
+            @Html.AntiForgeryToken()
+
+            <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+
+            <div class="form-group">
+                <label asp-for="FirstName">Имя</label>
+                <input asp-for="FirstName" class="form-input" placeholder="Иван" />
+                <span asp-validation-for="FirstName" class="field-error"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="LastName">Фамилия</label>
+                <input asp-for="LastName" class="form-input" placeholder="Иванов" />
+                <span asp-validation-for="LastName" class="field-error"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Phone">Телефон <span class="optional">— необязательно</span></label>
+                <input asp-for="Phone" class="form-input" placeholder="+7 900 000 00 00" />
+                <span asp-validation-for="Phone" class="field-error"></span>
+            </div>
+
+            <div class="profile-edit-actions">
+                <button type="submit" class="btn-green">Сохранить</button>
+                <a class="btn-ghost" asp-action="Index">Отмена</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

@@ -1,0 +1,46 @@
+﻿@model ProfileViewModel
+@{
+    ViewData["Title"] = "Личный кабинет";
+}
+
+<div class="profile-wrapper">
+    <div class="profile-card">
+        <div class="profile-header">
+            <div class="profile-avatar">
+                <i class="ti ti-user" aria-hidden="true"></i>
+            </div>
+            <div class="profile-header-info">
+                <div class="profile-name">@Model.FirstName @Model.LastName</div>
+                <div class="profile-role">@(Model.Role == "Admin" ? "Администратор" : "Покупатель")</div>
+            </div>
+        </div>
+
+        <div class="profile-section">
+            <div class="profile-section-title">Личные данные</div>
+            <div class="profile-fields">
+                <div class="profile-field">
+                    <div class="profile-field-label">Имя</div>
+                    <div class="profile-field-value">@Model.FirstName</div>
+                </div>
+                <div class="profile-field">
+                    <div class="profile-field-label">Фамилия</div>
+                    <div class="profile-field-value">@Model.LastName</div>
+                </div>
+                <div class="profile-field">
+                    <div class="profile-field-label">Email</div>
+                    <div class="profile-field-value">@Model.Email</div>
+                </div>
+                <div class="profile-field">
+                    <div class="profile-field-label">Телефон</div>
+                    <div class="profile-field-value">@(Model.Phone ?? "Не указан")</div>
+                </div>
+                <div class="profile-field">
+                    <div class="profile-field-label">Дата регистрации</div>
+                    <div class="profile-field-value">@Model.CreatedAt.ToString("dd.MM.yyyy")</div>
+                </div>
+            </div>
+        </div>
+
+        <a class="btn-green profile-edit-btn" asp-action="Edit">Редактировать профиль</a>
+    </div>
+</div>

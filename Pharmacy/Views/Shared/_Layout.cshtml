@@ -31,10 +31,10 @@
             {
                 <i class="ti ti-heart" aria-hidden="true"></i>
                 <i class="ti ti-shopping-cart" aria-hidden="true"></i>
-                <span class="nav-user">
+                <a class="nav-user" asp-controller="Profile" asp-action="Index">
                     <i class="ti ti-user-circle" aria-hidden="true"></i>
                     @User.FindFirst(System.Security.Claims.ClaimTypes.Name)?.Value
-                </span>
+                </a>
                 <form asp-controller="Account" asp-action="Logout" method="post" style="margin:0">
                     @Html.AntiForgeryToken()
                     <button type="submit" class="btn-outline">Выйти</button>
