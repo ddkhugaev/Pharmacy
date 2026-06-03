@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] — Админ МАРТ</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@@tabler/icons-webfont@latest/tabler-icons.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/admin.css" asp-append-version="true" />
+</head>
+<body class="admin-body">
+
+    <aside class="admin-sidebar">
+        <div class="admin-logo">
+            <span>МАРТ</span>
+            <small>Админ панель</small>
+        </div>
+        <nav class="admin-nav">
+            <a asp-area="Admin" asp-controller="Medicines" asp-action="Index"
+               class="admin-nav-item @(ViewContext.RouteData.Values["controller"]?.ToString() == "Medicines" ? "active" : "")">
+                <i class="ti ti-pill"></i>
+                Лекарства
+            </a>
+        </nav>
+        <div class="admin-sidebar-footer">
+            <a asp-area="" asp-controller="Home" asp-action="Index" class="admin-nav-item">
+                <i class="ti ti-arrow-left"></i>
+                На сайт
+            </a>
+        </div>
+    </aside>
+
+    <div class="admin-main">
+        <main class="admin-content">
+            @RenderBody()
+        </main>
+    </div>
+
+</body>
+</html>

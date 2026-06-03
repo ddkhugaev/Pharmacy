@@ -1,0 +1,49 @@
+﻿@model List<Pharmacy.Areas.Admin.Models.AdminMedicineViewModel>
+@{
+    ViewData["Title"] = "Управление лекарствами";
+    Layout = "_AdminLayout";
+}
+
+<div class="admin-header">
+    <h1 class="admin-title">Лекарства</h1>
+    <a asp-action="Create" class="btn-green">+ Добавить</a>
+</div>
+
+<div class="admin-table-wrap">
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Название</th>
+                <th>Категория</th>
+                <th>Бренд</th>
+                <th>Производитель</th>
+                <th>Цена</th>
+                <th>Остаток</th>
+                <th>Рецепт</th>
+                <th>Активен</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var m in Model)
+            {
+                <tr class="@(!m.IsActive ? "row-inactive" : "")">
+                    <td>@m.Id</td>
+                    <td>@m.Name</td>
+                    <td>@(m.CategoryName ?? "—")</td>
+                    <td>@(m.BrandName ?? "—")</td>
+                    <td>@(m.ManufacturerName ?? "—")</td>
+                    <td>@m.Price.ToString("N0") ₽</td>
+                    <td>@m.StockQuantity</td>
+                    <td>@(m.PrescriptionRequired ? "Да" : "Нет")</td>
+                    <td>@(m.IsActive ? "Да" : "Нет")</td>
+                    <td class="admin-actions">
+                        <a asp-action="Edit" asp-route-id="@m.Id" class="btn-admin-edit">Изменить</a>
+                        <a asp-action="Delete" asp-route-id="@m.Id" class="btn-admin-delete">Удалить</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
