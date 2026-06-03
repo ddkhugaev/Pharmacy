@@ -1,0 +1,169 @@
+﻿@model Pharmacy.Areas.Admin.Models.AdminMedicineFormViewModel
+@{
+    ViewData["Title"] = "Добавить лекарство";
+    Layout = "_AdminLayout";
+}
+
+<div class="admin-header">
+    <h1 class="admin-title">Добавить лекарство</h1>
+    <a asp-action="Index" class="btn-ghost">← Назад</a>
+</div>
+
+<div class="admin-form-wrap">
+    <form asp-action="Create" method="post">
+        @Html.AntiForgeryToken()
+
+        <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+
+        <div class="admin-form-section">
+            <div class="admin-form-section-title">Основное</div>
+            <div class="admin-form-grid">
+
+                <div class="form-group">
+                    <label asp-for="Name">Название</label>
+                    <input asp-for="Name" class="form-input" />
+                    <span asp-validation-for="Name" class="field-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Price">Цена (₽)</label>
+                    <input asp-for="Price" class="form-input" type="number" step="0.01" />
+                    <span asp-validation-for="Price" class="field-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="StockQuantity">Остаток</label>
+                    <input asp-for="StockQuantity" class="form-input" type="number" />
+                    <span asp-validation-for="StockQuantity" class="field-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="CategoryId">Категория</label>
+                    <select asp-for="CategoryId" class="form-input">
+                        <option value="">— Не выбрано —</option>
+                        @foreach (var c in Model.Categories)
+                        {
+                            <option value="@c.Id">@c.Name</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="BrandId">Бренд</label>
+                    <select asp-for="BrandId" class="form-input">
+                        <option value="">— Не выбрано —</option>
+                        @foreach (var b in Model.Brands)
+                        {
+                            <option value="@b.Id">@b.Name</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ManufacturerId">Производитель</label>
+                    <select asp-for="ManufacturerId" class="form-input">
+                        <option value="">— Не выбрано —</option>
+                        @foreach (var m in Model.Manufacturers)
+                        {
+                            <option value="@m.Id">@m.Name</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ImageUrl">Ссылка на изображение</label>
+                    <input asp-for="ImageUrl" class="form-input" />
+                </div>
+
+                <div class="form-group admin-form-checkboxes">
+                    <label class="admin-checkbox">
+                        <input asp-for="PrescriptionRequired" type="checkbox" />
+                        По рецепту
+                    </label>
+                    <label class="admin-checkbox">
+                        <input asp-for="IsActive" type="checkbox" />
+                        Активен
+                    </label>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="admin-form-section">
+            <div class="admin-form-section-title">Описание</div>
+            <div class="admin-form-grid admin-form-grid-full">
+
+                <div class="form-group">
+                    <label asp-for="Indications">Показания к применению</label>
+                    <textarea asp-for="Indications" class="form-input admin-textarea"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Administration">Способ применения</label>
+                    <textarea asp-for="Administration" class="form-input admin-textarea"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Composition">Состав</label>
+                    <textarea asp-for="Composition" class="form-input admin-textarea"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="PharmaGroup">Фармакологическая группа</label>
+                    <textarea asp-for="PharmaGroup" class="form-input admin-textarea"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="PharmaProps">Фармакологические свойства</label>
+                    <textarea asp-for="PharmaProps" class="form-input admin-textarea"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Contraindications">Противопоказания</label>
+                    <textarea asp-for="Contraindications" class="form-input admin-textarea"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="SideEffects">Побочные эффекты</label>
+                    <textarea asp-for="SideEffects" class="form-input admin-textarea"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Overdose">Передозировка</label>
+                    <textarea asp-for="Overdose" class="form-input admin-textarea"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="DrugInteractions">Взаимодействие с препаратами</label>
+                    <textarea asp-for="DrugInteractions" class="form-input admin-textarea"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="SpecialInstructions">Особые указания</label>
+                    <textarea asp-for="SpecialInstructions" class="form-input admin-textarea"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="DosageForm">Форма выпуска</label>
+                    <textarea asp-for="DosageForm" class="form-input admin-textarea"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="DispensingConditions">Условия отпуска</label>
+                    <textarea asp-for="DispensingConditions" class="form-input admin-textarea"></textarea>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="admin-form-actions">
+            <button type="submit" class="btn-green">Сохранить</button>
+            <a asp-action="Index" class="btn-ghost">Отмена</a>
+        </div>
+
+    </form>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

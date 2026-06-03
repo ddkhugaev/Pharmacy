@@ -172,3 +172,68 @@
 .btn-admin-delete:hover {
     background: #fee2e2;
 }
+
+.admin-form-wrap {
+    background: var(--bg-primary);
+    border: 0.5px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+}
+
+.admin-form-section {
+    margin-bottom: 32px;
+}
+
+.admin-form-section-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 0.5px solid var(--border-color);
+}
+
+.admin-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.admin-form-grid-full .form-group {
+    grid-column: span 2;
+}
+
+.admin-textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.admin-form-checkboxes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+}
+
+.admin-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+.admin-checkbox input[type="checkbox"] {
+    accent-color: var(--green-dark);
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+}
+
+.admin-form-actions {
+    display: flex;
+    gap: 10px;
+    padding-top: 16px;
+    border-top: 0.5px solid var(--border-color);
+}
