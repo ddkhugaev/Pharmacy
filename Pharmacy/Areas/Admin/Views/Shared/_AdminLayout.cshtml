@@ -21,6 +21,11 @@
                 <i class="ti ti-pill"></i>
                 Лекарства
             </a>
+            <a asp-area="Admin" asp-controller="Brands" asp-action="Index"
+               class="admin-nav-item @(ViewContext.RouteData.Values["controller"]?.ToString() == "Brands" ? "active" : "")">
+                <i class="ti ti-building"></i>
+                Бренды
+            </a>
         </nav>
         <div class="admin-sidebar-footer">
             <a asp-area="" asp-controller="Home" asp-action="Index" class="admin-nav-item">
@@ -35,6 +40,6 @@
             @RenderBody()
         </main>
     </div>
-
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

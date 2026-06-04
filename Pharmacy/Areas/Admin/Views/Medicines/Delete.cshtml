@@ -1,0 +1,39 @@
+﻿@model Pharmacy.Areas.Admin.Models.BrandViewModel
+@{
+    ViewData["Title"] = "Удалить бренд";
+    Layout = "_AdminLayout";
+}
+
+<div class="admin-header">
+    <h1 class="admin-title">Удалить бренд</h1>
+    <a asp-action="Index" class="btn-ghost">← Назад</a>
+</div>
+
+<div class="admin-form-wrap">
+    <div class="delete-confirm">
+        <div class="delete-icon">🗑️</div>
+        <div class="delete-title">Вы уверены?</div>
+        <div class="delete-desc">
+            Бренд <strong>@Model.Name</strong> будет удалён безвозвратно.
+        </div>
+
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="validation-summary">
+                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <div>@error.ErrorMessage</div>
+                }
+            </div>
+        }
+
+        <form asp-action="Delete" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="id" value="@Model.Id" />
+            <div class="delete-actions">
+                <button type="submit" class="btn-admin-delete-lg">Удалить</button>
+                <a asp-action="Index" class="btn-ghost">Отмена</a>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+﻿@model Pharmacy.Areas.Admin.Models.BrandViewModel
+@{
+    ViewData["Title"] = "Добавить бренд";
+    Layout = "_AdminLayout";
+}
+
+<div class="admin-header">
+    <h1 class="admin-title">Добавить бренд</h1>
+    <a asp-action="Index" class="btn-ghost">← Назад</a>
+</div>
+
+<div class="admin-form-wrap">
+    <form asp-action="Create" method="post">
+        @Html.AntiForgeryToken()
+
+        <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+
+        <div class="admin-form-section">
+            <div class="admin-form-section-title">Основное</div>
+            <div class="admin-form-grid">
+                <div class="form-group">
+                    <label asp-for="Name">Название</label>
+                    <input asp-for="Name" class="form-input" />
+                    <span asp-validation-for="Name" class="field-error"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="admin-form-actions">
+            <button type="submit" class="btn-green">Сохранить</button>
+            <a asp-action="Index" class="btn-ghost">Отмена</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

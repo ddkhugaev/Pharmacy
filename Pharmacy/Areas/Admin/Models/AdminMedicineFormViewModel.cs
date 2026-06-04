@@ -9,8 +9,8 @@ namespace Pharmacy.Areas.Admin.Models
         public string Name { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Введите цену")]
-        [Range(0.01, 999999, ErrorMessage = "Цена должна быть больше 0")]
-        public decimal Price { get; set; }
+        [Range(1, 999999, ErrorMessage = "Цена должна быть больше 0")]
+        public int Price { get; set; }
 
         public int? CategoryId { get; set; }
         public int? BrandId { get; set; }

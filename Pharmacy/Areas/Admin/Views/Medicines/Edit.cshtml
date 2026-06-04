@@ -1,16 +1,16 @@
 ﻿@model Pharmacy.Areas.Admin.Models.AdminMedicineFormViewModel
 @{
-    ViewData["Title"] = "Добавить лекарство";
+    ViewData["Title"] = "Редактировать лекарство";
     Layout = "_AdminLayout";
 }
 
 <div class="admin-header">
-    <h1 class="admin-title">Добавить лекарство</h1>
+    <h1 class="admin-title">Редактировать лекарство</h1>
     <a asp-action="Index" class="btn-ghost">← Назад</a>
 </div>
 
 <div class="admin-form-wrap">
-    <form asp-action="Create" method="post">
+    <form asp-action="Edit" method="post">
         @Html.AntiForgeryToken()
 
         <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
